@@ -1,0 +1,1 @@
+[![Coverage Status](https://coveralls.io/repos/github/stphler/sendit-api/badge.svg)](https://coveralls.io/github/stphler/sendit-api)
