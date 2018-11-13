@@ -2,6 +2,7 @@
 from flask import Flask
 # we import created blueprints to register them
 from .api.v1 import version1
+from .test.v1 import TestDataParcel
 
 
 def create_app():

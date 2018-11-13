@@ -7,3 +7,4 @@ api = Api(version1)
 
 api.add_resource(OrderParcel, '/parcels')
 api.add_resource(User, '/users')
+api.add_resource(TestDataParcel, '/test')

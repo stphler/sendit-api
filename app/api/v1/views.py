@@ -25,9 +25,6 @@ class OneParcel(Resource, DataParcel):
         parcel = self.parcel.get_parcel(id)
         return parcel
 
-        else:
-            return {"message": "Parcel with that id does not exist"}, 404
-
     def post(self):
         add = self.parcel.add_parcel()
         return add
@@ -36,12 +33,6 @@ class OneParcel(Resource, DataParcel):
 
         new = self.parcel.change_location(id)
         return new
-        for parcel in parcels:
-            if parcel['id'] == id:
-
-                pass
-            else:
-                return{"message": "No delivery found"}, 400
 
     def delete(self, id):
 
