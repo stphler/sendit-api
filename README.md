@@ -3,7 +3,7 @@ Getting Started
 
 Clone or download the project from git either via terminal using the commands
 
-    git clone :https://github.com/Mark9Mbugua/SendITAPI.git
+    https://github.com/stphler/sendit-api.git
     Download zip file from the right hand corner
 
 Use the following endpoints to perform the specified tasks
