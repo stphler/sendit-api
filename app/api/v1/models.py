@@ -2,7 +2,7 @@ from flask import request
 
 # this is where all our parcels delivery orders will be posted
 parcels = [
-{
+    {
         "id": 1,
         "sender_name": "Muthoni",
         "user_id": 10,
@@ -30,9 +30,11 @@ parcels = [
 class DataParcel(object):
     """This is the Dataparcel class with its attributes"""
 
-    def __init__(self, sender_name, recipient, destination, weight, pickup, status):
+    def __init__(self, id, user_id, sender_name, recipient, destination, weight, pickup):
         self.db = parcels
-        self.sender = sender
+        self.id = id
+        self.user_id = user_id
+        self.sender_name = sender_name
         self.recipient = recipient
         self.destination = destination
         self.weight = weight
@@ -126,16 +128,3 @@ class DataParcel(object):
             if parcel["id"] == id:
                 parcel["destination"] = new
                 return {"Success": "Destination successfully changed" + parcel}, 200
-class CancelOrder(Resource, Dataparcel):
-    def put(self, parcelId):
-        '''
-        Cancel an order
-        '''
-        parcel = DataOrder().get_parcel(parcelId)
-        if not parcel:
-            return {'message': 'parcel missing'}, 404
-        parcel.status = 'cancelled'
-        return {
-            "message":"parcel cancellationed successfully",
-            "parcel cancelled":parcel.__dict__
-            }, 200

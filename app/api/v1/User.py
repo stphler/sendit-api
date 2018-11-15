@@ -1,3 +1,4 @@
+from flask_restful import Resource
 class SignUp(Resource, ParcelModel):
 
     """docstring for SignUp"""

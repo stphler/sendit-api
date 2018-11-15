@@ -7,7 +7,7 @@ class OrderParcel(Resource, DataParcel):
     any specificity."""
 
     def __init__(self):
-        self.parcel = DataParcel()
+        self.parcel = DataParcel("2", "Steve", 11, "JAMES", "Kiambu", "20", "Nakuru")
 
     def get(self):
         parcel = self.parcel.get_all()
@@ -18,15 +18,12 @@ class OneParcel(Resource, DataParcel):
     """This class contains methods for manipulating a specific parcel"""
 
     def __init__(self):
-        self.parcel = DataParcel()
+        self.parcel = DataParcel("2", "Steve", 11, "JAMES", "Kiambu", "20", "Nakuru")
 
     def get(self, id):
 
-        parcel = self.parcel.get_parcel(id)
+        parcel = self.parcel.get_parcel(id=2)
         return parcel
-
-        else:
-            return {"message": "Parcel with that id does not exist"}, 404
 
     def post(self):
         add = self.parcel.add_parcel()
@@ -36,12 +33,6 @@ class OneParcel(Resource, DataParcel):
 
         new = self.parcel.change_location(id)
         return new
-        for parcel in parcels:
-            if parcel['id'] == id:
-
-                pass
-            else:
-                return{"message": "No delivery found"}, 400
 
     def delete(self, id):
 
@@ -61,3 +52,18 @@ class User(Resource, DataParcel):
             return {"parcels": package}
         else:
             return "No Parcel by {}".format(sender_name)
+
+
+class CancelOrder(Resource, DataParcel):
+    def put(self, parcelId):
+        '''
+        Cancel an order
+        '''
+        parcel = DataOrder().get_parcel(parcelId)
+        if not parcel:
+            return {'message': 'parcel missing'}, 404
+        parcel.status = 'cancelled'
+        return {
+            "message": "parcel cancellationed successfully",
+            "parcel cancelled": parcel.__dict__
+        }, 200
